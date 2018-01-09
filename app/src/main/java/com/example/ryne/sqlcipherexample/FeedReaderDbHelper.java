@@ -36,6 +36,7 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper{
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+
     public synchronized  FeedReaderDbHelper getInstance(Context context){
         if (instance == null) {
             instance = new FeedReaderDbHelper(context);
@@ -43,13 +44,16 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper{
         return instance;
     }
 
+    //upon db creation
     @Override
     public void onCreate(SQLiteDatabase db) {
-
+        db.execSQL(SQL_CREATE_ENTRIES);
     }
 
+    //upon upgrade
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL(SQL_DELETE_ENTRIES);
+        onCreate(db);
     }
 }
