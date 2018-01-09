@@ -11,8 +11,8 @@ import net.sqlcipher.database.SQLiteOpenHelper;
 
 public class FeedReaderDbHelper extends SQLiteOpenHelper{
 
-
-    public FeedReaderDbHelper instance; //adding static here creates mem leak
+    //adding static here creates mem leak
+    private static FeedReaderDbHelper instance;
 
     //database version and name creation
     private static final int DATABASE_VERSION = 1;
@@ -37,7 +37,7 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper{
     }
 
 
-    public synchronized  FeedReaderDbHelper getInstance(Context context){
+    public static synchronized  FeedReaderDbHelper getInstance(Context context){
         if (instance == null) {
             instance = new FeedReaderDbHelper(context);
         }
