@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_SUBTITLE,
                 "A thrilling story which proves how fragile our hearts are...");
 
-
+        //inserting above values into db
+        db.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values);
     }
 }
