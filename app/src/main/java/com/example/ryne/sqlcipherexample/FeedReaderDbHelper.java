@@ -21,7 +21,7 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper{
     //data type and sql entries created
     private static final String TEXT_TYPE = " TEXT";
     private static final String SQL_CREATE_ENTRIES =
-            "CREATE TABLES " + FeedReaderContract.FeedEntry.TABLE_NAME + " (" +
+            "CREATE TABLE " + FeedReaderContract.FeedEntry.TABLE_NAME + " (" +
                     FeedReaderContract.FeedEntry._ID + " INTEGER PRIMARY KEY," +
                     FeedReaderContract.FeedEntry.COLUMN_NAME_ENTRY_ID + TEXT_TYPE + "," +
                     FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE + TEXT_TYPE + "," +
@@ -45,13 +45,11 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper{
     }
 
     //upon db creation
-    @Override
-    public void onCreate(SQLiteDatabase db) {
+     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_ENTRIES);
     }
 
     //upon upgrade
-    @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(SQL_DELETE_ENTRIES);
         onCreate(db);
